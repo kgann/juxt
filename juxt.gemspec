@@ -8,8 +8,8 @@ Gem::Specification.new do |gem|
   gem.version       = Juxt::VERSION
   gem.authors       = ["Kyle Gann"]
   gem.email         = ["kylegann@gmail.com"]
-  gem.description   = %q{TODO: Write a gem description}
-  gem.summary       = %q{TODO: Write a gem summary}
+  gem.description   = %q{A simple gem to provide juxtaposition to Objects and Arrays}
+  gem.summary       = %q{A simple gem to provide juxtaposition to Objects and Arrays}
   gem.homepage      = ""
 
   gem.files         = `git ls-files`.split($/)
