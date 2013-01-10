@@ -1,0 +1,45 @@
+# Juxt
+
+A simple gem to provide juxtaposition to Objects and Arrays
+
+Example
+
+```ruby
+  ['foo', 'bar'].juxt :upcase, :reverse
+  # [['FOO', 'oof'], ['BAR', 'rab']]
+  
+  ['foo'].juxt :upcase, :reverse
+  # [['FOO', 'oof']]
+
+  [arr3]].juxt :upcase, :reverse
+  # []
+
+  'foo'.juxt :upcase, :reverse
+  # ['FOO', 'oof']
+```
+
+## Installation
+
+Add this line to your application's Gemfile:
+
+    gem 'juxt'
+
+And then execute:
+
+    $ bundle
+
+Or install it yourself as:
+
+    $ gem install juxt
+
+## Usage
+
+TODO: Write usage instructions here
+
+## Contributing
+
+1. Fork it
+2. Create your feature branch (`git checkout -b my-new-feature`)
+3. Commit your changes (`git commit -am 'Add some feature'`)
+4. Push to the branch (`git push origin my-new-feature`)
+5. Create new Pull Request
