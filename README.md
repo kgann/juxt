@@ -7,12 +7,6 @@ Example
 ```ruby
   ['foo', 'bar'].juxt :upcase, :reverse
   # [['FOO', 'oof'], ['BAR', 'rab']]
-  
-  ['foo'].juxt :upcase, :reverse
-  # [['FOO', 'oof']]
-
-  [arr3]].juxt :upcase, :reverse
-  # []
 
   'foo'.juxt :upcase, :reverse
   # ['FOO', 'oof']
