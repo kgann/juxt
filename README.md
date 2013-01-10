@@ -5,11 +5,11 @@ A simple gem to provide juxtaposition to Objects and Arrays
 Example
 
 ```ruby
-  ['foo', 'bar'].map_juxt :upcase, :reverse
-  # [['FOO', 'oof'], ['BAR', 'rab']]
+['foo', 'bar'].map_juxt :upcase, :reverse
+# [['FOO', 'oof'], ['BAR', 'rab']]
 
-  'foo'.juxt :upcase, :reverse
-  # ['FOO', 'oof']
+'foo'.juxt :upcase, :reverse
+# ['FOO', 'oof']
 ```
 
 ## Installation
