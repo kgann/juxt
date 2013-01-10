@@ -1,10 +1,10 @@
 require "juxt/version"
 
 class Array
-  def juxtapose(*args)
+  def map_juxtapose(*args)
     map{ |e| [*args].map{ |x| e.send x } }
   end
-  alias juxt juxtapose
+  alias map_juxt map_juxtapose
 end
 
 class Object
