@@ -10,6 +10,14 @@ Example
 
 'foo'.juxt :upcase, :reverse
 # ['FOO', 'oof']
+
+{:foo => 'foo', :bar => 'bar'}.juxt :foo, :bar
+# ['foo', 'bar']
+
+# Need to create a hash from some Object properties?
+a = ['foo', 'bar'].map_juxt :upcase, :reverse
+Hash[a]
+# {'FOO' => 'oof', 'BAR' => 'rab'}
 ```
 
 ## Installation
