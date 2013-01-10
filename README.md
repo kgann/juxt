@@ -14,9 +14,9 @@ Example
 {:foo => 'foo', :bar => 'bar'}.juxt :foo, :bar
 # ['foo', 'bar']
 
-# Need to create a hash from some Object properties?
-a = ['foo', 'bar'].map_juxt :upcase, :reverse
-Hash[a]
+# Need to create a hash from some Object properties/method/attributes?
+arr = ['foo', 'bar']
+Hash[arr.map_juxt :upcase, :reverse]
 # {'FOO' => 'oof', 'BAR' => 'rab'}
 ```
 
