@@ -9,26 +9,23 @@ describe Juxt do
   let(:obj3){ Object.new }
 
   describe 'Array#map_juxt' do
+    it "should call juxtapose for all array elements" do
+      arr1.first.should_receive(:juxtapose).with :upcase, :reverse
+      arr1.last.should_receive(:juxtapose).with :upcase, :reverse
+      arr1.map_juxt :upcase, :reverse
+    end
     specify{ expect(arr1.map_juxt :upcase, :reverse).to eq [['FOO', 'oof'], ['BAR', 'rab']] }
     specify{ expect(arr2.map_juxt :upcase, :reverse).to eq [['FOO', 'oof']] }
     specify{ expect(arr3.map_juxt :upcase, :reverse).to eq [] }
   end
 
   describe 'Object#juxt' do
-    it "should execute a Proc with self as the only argument" do
+    it "should execute a Proc or lambda with self as the only argument" do
       obj3.stub(:method1){ 10 }
       obj3.stub(:method2){ 20 }
-      proc1 = Proc.new{ |m| m.method1 + m.method2 }
-      proc2 = Proc.new{ |m| m.method1 * m.method2 }
-      expect(obj3.juxt proc1, proc2).to eq [30, 200]
-    end
-
-    it "should execute a lambda with self as the only argument" do
-      obj3.stub(:method1){ 10 }
-      obj3.stub(:method2){ 20 }
-      lambda1 = ->(m){ m.method1 + m.method2 }
-      lambda2 = ->(m){ m.method1 * m.method2 }
-      expect(obj3.juxt lambda1, lambda2).to eq [30, 200]
+      proc = Proc.new{ |m| m.method1 + m.method2 }
+      lambda = ->(m){ m.method1 * m.method2 }
+      expect(obj3.juxt proc, lambda).to eq [30, 200]
     end
 
     describe String do
