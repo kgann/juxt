@@ -34,20 +34,18 @@ describe Juxt do
         @obj3 = Object.new
         @obj3.stub(:method1){ 10 }
         @obj3.stub(:method2){ 20 }
+        @proc = Proc.new{ |m| m.method1 + m.method2 }
+        @lamb = lambda{ |m| m.method1 * m.method2 }
       end
 
       it 'should execute a Proc or lambda with self as the only argument' do
-        proc = Proc.new{ |m| m.method1 + m.method2 }
-        lambda = ->(m){ m.method1 * m.method2 }
-        proc.should_receive(:call).with @obj3
-        lambda.should_receive(:call).with @obj3
+        @proc.should_receive(:call).with @obj3
+        @lamb.should_receive(:call).with @obj3
         @obj3.juxt proc, lambda
       end
 
-      it 'should juxtapose the results of the Proc or lambda' do
-        proc = Proc.new{ |m| m.method1 + m.method2 }
-        lambda = ->(m){ m.method1 * m.method2 }
-        expect(@obj3.juxt proc, lambda).to eq [30, 200]
+      it 'should juxtapose the results of the Proc or lambda' do}
+        expect(@obj3.juxt @proc, @lamb).to eq [30, 200]
       end
     end
 
