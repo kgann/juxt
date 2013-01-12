@@ -20,12 +20,9 @@ describe Juxt do
 
   describe 'Object#juxt' do
     describe 'args' do
-      args = [:object_id].cycle(rand(10) + 1).to_a
-      it "should accept any number of arguments > 1" do
+      args = [:object_id].cycle(rand 10).to_a
+      it "should accept any number of arguments" do
         ->{ obj1.juxt *args }.should_not raise_exception ArgumentError
-      end
-      it "should raise ArgumentError when no arguments given" do
-        ->{ obj1.juxt }.should raise_exception ArgumentError
       end
     end
 
@@ -41,10 +38,10 @@ describe Juxt do
       it 'should execute a Proc or lambda with self as the only argument' do
         @proc.should_receive(:call).with @obj3
         @lamb.should_receive(:call).with @obj3
-        @obj3.juxt proc, lambda
+        @obj3.juxt @proc, @lamb
       end
 
-      it 'should juxtapose the results of the Proc or lambda' do}
+      it 'should juxtapose the results of the Proc or lambda' do
         expect(@obj3.juxt @proc, @lamb).to eq [30, 200]
       end
     end
