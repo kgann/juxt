@@ -19,14 +19,20 @@ describe Juxt do
   end
 
   describe 'Object#juxt' do
-    describe "Procs and Lambdas" do
+    describe 'args' do
+      it "should accept any number of arguments" do
+        ->{ obj1.juxt *[:object_id].cycle(rand 10).to_a }.should_not raise_exception ArgumentError
+      end
+    end
+
+    describe 'Procs and Lambdas' do
       before :each do
         @obj3 = Object.new
         @obj3.stub(:method1){ 10 }
         @obj3.stub(:method2){ 20 }
       end
 
-      it "should execute a Proc or lambda with self as the only argument" do
+      it 'should execute a Proc or lambda with self as the only argument' do
         proc = Proc.new{ |m| m.method1 + m.method2 }
         lambda = ->(m){ m.method1 * m.method2 }
         proc.should_receive(:call).with @obj3
@@ -34,7 +40,7 @@ describe Juxt do
         @obj3.juxt proc, lambda
       end
 
-      it "should juxtapose the results of the Proc or lambda" do
+      it 'should juxtapose the results of the Proc or lambda' do
         proc = Proc.new{ |m| m.method1 + m.method2 }
         lambda = ->(m){ m.method1 * m.method2 }
         expect(@obj3.juxt proc, lambda).to eq [30, 200]
