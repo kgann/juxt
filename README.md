@@ -14,6 +14,12 @@ Example
 {:foo => 'foo', :bar => 'bar'}.juxt :foo, :bar
 # ['foo', 'bar']
 
+# Procs and Lambdas are ok too
+proc = Proc.new{ |m| m.class }
+lambda = ->(m){ m.length + 100 }
+'foo'.juxt proc, lambda
+# [String, 103]
+
 # Need to create a hash from some Object properties/method/attributes?
 arr = ['foo', 'bar']
 Hash[arr.map_juxt :upcase, :reverse]

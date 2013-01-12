@@ -2,7 +2,7 @@ require "juxt/version"
 
 class Object
   def juxtapose(*args)
-    [*args].map{ |x| send x }
+    [*args].map{ |x| x.is_a?(Proc) ? x.call(self) : send(x) }
   end
   alias juxt juxtapose
 end
