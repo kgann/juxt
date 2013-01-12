@@ -20,8 +20,9 @@ describe Juxt do
 
   describe 'Object#juxt' do
     describe 'args' do
+      args = [:object_id].cycle(rand(10) + 1).to_a
       it "should accept any number of arguments > 1" do
-        ->{ obj1.juxt *[:object_id].cycle(rand(10) + 1).to_a }.should_not raise_exception ArgumentError
+        ->{ obj1.juxt *args }.should_not raise_exception ArgumentError
       end
       it "should raise ArgumentError when no arguments given" do
         ->{ obj1.juxt }.should raise_exception ArgumentError
